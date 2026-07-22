@@ -1,0 +1,10 @@
+{'log_num': 1, 'timestamp': '2026-01-20 17:59:12', 'source_ip': '194.123.36.38', 'log_type': 'port_scan', 'raw_log': 'A host probed multiple network ports to discover open services that could be targeted.'}
+{'log_num': 2, 'timestamp': '2026-11-13 09:51:05', 'source_ip': '199.142.38.10', 'log_type': 'firewall_deny', 'raw_log': 'The firewall blocked a connection because it violated a security rule or policy.'}
+{'log_num': 3, 'timestamp': '2026-10-15 17:11:07', 'source_ip': '197.185.10.15', 'log_type': 'firewall_deny', 'raw_log': 'The firewall blocked a connection because it violated a security rule or policy.'}
+{'log_num': 4, 'timestamp': '2026-01-15 16:33:20', 'source_ip': '194.143.13.15', 'log_type': 'port_scan', 'raw_log': 'A host probed multiple network ports to discover open services that could be targeted.'}
+{'log_num': 5, 'timestamp': '2026-09-12 00:26:36', 'source_ip': '196.143.26.34', 'log_type': 'port_scan', 'raw_log': 'A host probed multiple network ports to discover open services that could be targeted.'}
+{'log_num': 6, 'timestamp': '2026-07-13 14:12:20', 'source_ip': '193.173.17.8', 'log_type': 'failed_login', 'raw_log': 'An authentication attempt failed, likely due to an incorrect username/password or unauthorized access attempt.'}
+{'log_num': 7, 'timestamp': '2026-12-23 06:19:33', 'source_ip': '198.196.25.12', 'log_type': 'firewall_deny', 'raw_log': 'The firewall blocked a connection because it violated a security rule or policy.'}
+{'log_num': 8, 'timestamp': '2026-03-02 07:19:17', 'source_ip': '193.139.1.31', 'log_type': 'failed_login', 'raw_log': 'An authentication attempt failed, likely due to an incorrect username/password or unauthorized access attempt.'}
+{'log_num': 9, 'timestamp': '2026-02-07 00:15:30', 'source_ip': '199.184.38.34', 'log_type': 'failed_login', 'raw_log': 'An authentication attempt failed, likely due to an incorrect username/password or unauthorized access attempt.'}
+{'log_num': 10, 'timestamp': '2026-03-20 03:35:15', 'source_ip': '197.181.9.14', 'log_type': 'firewall_deny', 'raw_log': 'The firewall blocked a connection because it violated a security rule or policy.'}

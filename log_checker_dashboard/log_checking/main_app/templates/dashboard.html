@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alert Triage Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #151b23;
+    --border: #262d38;
+    --text: #d6dde5;
+    --muted: #8b96a5;
+    --critical: #ff4d4f;
+    --high: #ff9f43;
+    --medium: #ffd43b;
+    --low: #4dabf7;
+    --info: #6c757d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    padding: 32px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  header h1 {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .stats {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .stats span.count-critical { color: var(--critical); font-weight: bold; }
+  .stats span.count-high { color: var(--high); font-weight: bold; }
+  .stats span.count-medium { color: var(--medium); font-weight: bold; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: var(--panel); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .badge-critical { background: rgba(255,77,79,0.15); color: var(--critical); border: 1px solid var(--critical); }
+  .badge-high     { background: rgba(255,159,67,0.15); color: var(--high); border: 1px solid var(--high); }
+  .badge-medium   { background: rgba(255,212,59,0.15); color: var(--medium); border: 1px solid var(--medium); }
+  .badge-low      { background: rgba(77,171,247,0.15); color: var(--low); border: 1px solid var(--low); }
+  .badge-info     { background: rgba(108,117,125,0.15); color: var(--info); border: 1px solid var(--info); }
+
+  .raw-log {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+    margin-top: 4px;
+  }
+  .reasoning {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .action {
+    color: var(--text);
+  }
+  .empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 60px 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Alert Triage Dashboard</h1>
+  <div class="stats">
+    <span>Total: {{ total_count }}</span>
+    <span class="count-critical">Critical: {{ critical_count }}</span>
+    <span class="count-high">High: {{ high_count }}</span>
+    <span class="count-medium">Medium: {{ medium_count }}</span>
+  </div>
+</header>
+
+{% if events %}
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Source</th>
+      <th>Type</th>
+      <th>Severity</th>
+      <th>Summary / Reasoning</th>
+      <th>Recommended Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td>{{ event.timestamp }}</td>
+      <td>{{ event.source_ip }}</td>
+      <td>{{ event.log_type }}</td>
+      <td><span class="badge badge-{{ event.severity }}">{{ event.severity }}</span></td>
+      <td>
+        {{ event.ai_summary }}
+        <span class="reasoning">{{ event.ai_reasoning }}</span>
+        <span class="raw-log">{{ event.raw_log }}</span>
+      </td>
+      <td class="action">{{ event.recommended_action }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty">No events to show. Your pipeline returned an empty list.</div>
+{% endif %}
+
+</body>
+</html>
